@@ -1,0 +1,8 @@
+<mvc:View
+    controller="tp.example.controller.App"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+
+    <Text text="Simple Test Project to learn UI5"/>
+
+</mvc:View>

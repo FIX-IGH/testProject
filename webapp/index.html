@@ -8,10 +8,14 @@
 		src="resources/sap-ui-core.js"
 		data-sap-ui-theme="sap_horizon"
 		data-sap-ui-compat-version="edge"
-		data-sap-ui-async="true">
+		data-sap-ui-async="true"
+        data-sap-ui-on-init="module:tp/example/index"
+		data-sap-ui-resource-roots='{
+			"tp.example": "./"
+		}'
+		>
 	</script>
 </head>
-<body>
-	<div>Simple Test Project to learn UI5</div>
+<body id="content">
 </body>
 </html>
