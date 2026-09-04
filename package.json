@@ -1,0 +1,12 @@
+{
+  "name": "tp.example",
+  "version": "1.0.0",
+  "description": "A Test Project to learn OpenUI5",
+  "private": true,
+  "scripts": {
+    "start": "ui5 serve -o index.html"
+  },
+  "devDependencies": {
+    "@ui5/cli": "^4.0.64"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "_version": "2.11.0",
+  "sap.app": {
+    "id": "tp.example",
+    "type": "application",
+    "title": "OpenUI5 Test Project",
+    "applicationVersion": {
+      "version": "1.0.0"
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "deviceTypes": {
+        "desktop": true,
+        "tablet": false,
+        "phone": false
+    }
+  },
+  "sap.ui5": {
+    "dependencies": {
+        "minUI5Version": "1.15.0",
+        "libs": {
+            "sap.m": {
+                "minVersion": "1.34.0"
+            },
+            "sap.ui.commons": {
+                "minVersion": "1.34.0",
+                "lazy": true
+            }
+        },
+        "components": {
+            "sap.ui.app.other": {
+                "minVersion": "1.1.0",
+                "lazy": true
+            }
+        }
+    },
+    "contentDensities": {
+        "compact": false,
+        "cozy": true
+    }
+  }
+}
