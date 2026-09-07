@@ -1,8 +1,31 @@
 <mvc:View
     controller="tp.example.controller.App"
     xmlns:mvc="sap.ui.core.mvc"
-    xmlns="sap.m">
+    xmlns="sap.m"
+    displayBlock="true">
 
-    <Text text="Simple Test Project to learn UI5"/>
+    <Shell>
+        <App>
+        <pages>
+            <Page title="Home Page">
+                <content>
+                <Panel headerText="Test Panel">
+                <content>
+                    <Text text="{test>/Test}"/>
+                    <!-- <List
+                        id="list"
+                        items="{/Restaurants}" >
+                        <StandardListItem
+                            title="{RestaurantName}"
+                            description="{OwnerName}"/>
+                    </List> -->
+                </content>
+                </Panel>
+                </content>
+            </Page>
+        </pages>
+        </App>
+    </Shell>
+
 
 </mvc:View>

@@ -1,0 +1,28 @@
+{
+    "Test" : "Test successful!",
+    "Restaurants" : [
+        {
+            "RestaurantID": "1",
+            "RestaurantName" : "Pizza Palais",
+            "OwnerName": "Guiseppe Garibaldi",
+            "Street": "Dietmar-Hopp-Allee 16",
+            "PostCode": "69190",
+            "City": "Walldorf",
+            "Country": "DE",
+            "Email": "ggaribaldi@sap.de",
+            "Telephone": "0871690495"
+        },
+        {
+            "RestaurantID": "2",
+            "RestaurantName" : "Alberto's Pizza",
+            "OwnerName": "Giacomo Alberto",
+            "Street": "Flurstraße 17",
+            "PostCode": "51773",
+            "City": "Frankfurt",
+            "Country": "DE",
+            "Email": "alberto-pizza@gmail.de",
+            "Telephone": "0916733365"
+        }
+    ]
+    
+}

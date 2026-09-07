@@ -38,6 +38,17 @@
     "contentDensities": {
         "compact": false,
         "cozy": true
+    },
+    "rootView": {
+      "viewName": "tp.example.view.App",
+      "type": "XML",
+      "id": "app"
+    },
+    "models": {
+      "test": {
+        "type": "sap.ui.model.json.JSONModel",
+        "uri": "model/data.json"
+      }
     }
   }
 }

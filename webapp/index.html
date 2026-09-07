@@ -9,13 +9,14 @@
 		data-sap-ui-theme="sap_horizon"
 		data-sap-ui-compat-version="edge"
 		data-sap-ui-async="true"
-        data-sap-ui-on-init="module:tp/example/index"
+        data-sap-ui-on-init="module:sap/ui/core/ComponentSupport"
 		data-sap-ui-resource-roots='{
 			"tp.example": "./"
 		}'
 		>
 	</script>
 </head>
-<body id="content">
+<body class="sapUiBody" id="content">
+	<div data-sap-ui-component data-name="tp.example" data-id="container" data-settings='{"id" : "example"}'></div>	
 </body>
 </html>
