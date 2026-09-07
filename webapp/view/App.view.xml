@@ -3,15 +3,11 @@
     xmlns="sap.m"
     displayBlock="true"
     controller="tp.example.controller.App">
-    <Shell>
-        <App>
-        <pages>
+        <App id="app">
             <Page title="Home Page">
-                <content>
                 <Panel headerText="Test Panel">
-                <content>
                     <Text text="{test>/Test}"/>
-                    <Button text="Search" press=".onButtonPress"></Button>
+                    <Button text="Search" press=".onButtonPress" />
                     <List 
                         id="categories"
                         items="{test>/Categories}">
@@ -26,13 +22,10 @@
                             title="{test>RestaurantName}"
                             description="{test>OwnerName}"/>
                     </List>
-                </content>
                 </Panel>
-                </content>
             </Page>
-        </pages>
         </App>
-    </Shell>
+   
 
 
 </mvc:View>

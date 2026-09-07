@@ -12,8 +12,11 @@ import Button, { Button$PressEvent } from "sap/m/Button";
  * @namespace tp.example.controller
  */
 
-export default class AppController extends Controller {
-    private pDialog: Promise<Dialog> | null = null;
+export default class App extends Controller {
+    // private pDialog: Promise<Dialog> | null = null;
+    onInit(): void | undefined {
+        console.log("AppController");
+    }
 
     /*
     public async onButtonPress(): Promise<void> {
