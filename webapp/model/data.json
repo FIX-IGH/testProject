@@ -10,7 +10,8 @@
             "City": "Walldorf",
             "Country": "DE",
             "Email": "ggaribaldi@sap.de",
-            "Telephone": "0871690495"
+            "Telephone": "0871690495",
+            "Category" : "Pizza"
         },
         {
             "RestaurantID": "2",
@@ -21,8 +22,15 @@
             "City": "Frankfurt",
             "Country": "DE",
             "Email": "alberto-pizza@gmail.de",
-            "Telephone": "0916733365"
+            "Telephone": "0916733365",
+            "Category" : "Pizza"
         }
+    ],
+    "Categories" : [
+        { "Category" : "Pizza" },
+        { "Category" : "Pasta" },
+        { "Category" : "Sushi" },
+        { "Category" : "Burger" }
     ]
     
 }

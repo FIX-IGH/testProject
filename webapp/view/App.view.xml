@@ -1,9 +1,8 @@
 <mvc:View
-    controller="tp.example.controller.App"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
-    displayBlock="true">
-
+    displayBlock="true"
+    controller="tp.example.controller.App">
     <Shell>
         <App>
         <pages>
@@ -12,13 +11,21 @@
                 <Panel headerText="Test Panel">
                 <content>
                     <Text text="{test>/Test}"/>
-                    <!-- <List
+                    <Button text="Search" press=".onButtonPress"></Button>
+                    <List 
+                        id="categories"
+                        items="{test>/Categories}">
+                        <StandardListItem 
+                            title="{test>Category}">
+                        </StandardListItem>
+                        </List>
+                    <List
                         id="list"
-                        items="{/Restaurants}" >
+                        items="{test>/Restaurants}" >
                         <StandardListItem
-                            title="{RestaurantName}"
-                            description="{OwnerName}"/>
-                    </List> -->
+                            title="{test>RestaurantName}"
+                            description="{test>OwnerName}"/>
+                    </List>
                 </content>
                 </Panel>
                 </content>
