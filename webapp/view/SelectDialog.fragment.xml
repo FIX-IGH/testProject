@@ -5,6 +5,9 @@
         noDataText="No Products Found"
         title="Select Product"
         searchPlaceholder="Search Products"
+		search=".onSearch"
+		confirm=".onDialogClose"
+		cancel=".onDialogClose"
         showClearButton="true"
         items="{
             path: 'test>/Categories',

@@ -11,7 +11,9 @@
             "Country": "DE",
             "Email": "ggaribaldi@sap.de",
             "Telephone": "0871690495",
-            "Category" : "Pizza"
+            "Categories" : [
+                "Pizza", "Pasta"
+            ]
         },
         {
             "RestaurantID": "2",
@@ -23,14 +25,62 @@
             "Country": "DE",
             "Email": "alberto-pizza@gmail.de",
             "Telephone": "0916733365",
-            "Category" : "Pizza"
+            "Categories" : [
+                "Pizza", "Pasta"
+            ]
+        },
+        {
+            "RestaurantID": "3",
+            "RestaurantName" : "Zum goldenen Apfel",
+            "OwnerName": "Hans Peter",
+            "Street": "An den Linden 45",
+            "PostCode": "77697",
+            "City": "Hamburg",
+            "Country": "DE",
+            "Email": "zum-apfel@gmx.de",
+            "Telephone": "8945166268",
+            "Categories" : [
+                "Schnitzel", "Pizza", "Pommes"
+            ]
+        },
+        {
+            "RestaurantID": "4",
+            "RestaurantName" : "Grillhaus Friedmann",
+            "OwnerName": "Jürgen Friedmann",
+            "Street": "Am Weiher 12",
+            "PostCode": "543645",
+            "City": "Wien",
+            "Country": "AT",
+            "Email": "grillhaus-friedmann@gmx.de",
+            "Telephone": "6759011213",
+            "Categories" : [
+                "Schnitzel", "Gyros", "Kebap", "Pommes"
+            ]
+        },
+        {
+            "RestaurantID": "5",
+            "RestaurantName" : "Satsuma Sushi Bar",
+            "OwnerName": "Hideo Ito",
+            "Street": "Mozartallee",
+            "PostCode": "454468",
+            "City": "Düsseldorf",
+            "Country": "DE",
+            "Email": "satsuma-sushi@gmx.de",
+            "Telephone": "324920322",
+            "Categories" : [
+                "Sushi"
+            ]
         }
     ],
     "Categories" : [
         { "Category" : "Pizza" },
         { "Category" : "Pasta" },
         { "Category" : "Sushi" },
-        { "Category" : "Burger" }
+        { "Category" : "Burger" },
+        { "Category" : "Schnitzel" },
+        { "Category" : "Gyros" },
+        { "Category" : "Kebap" },
+        { "Category" : "Pommes" }
     ]
     
 }

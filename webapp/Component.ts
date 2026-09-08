@@ -7,7 +7,7 @@ export default class Component extends UIComponent {
 		"interfaces": ["sap.ui.core.IAsyncContentCreation"],
 		"manifest": "json" 
 	};
-	
+
 	init(): void {
 		super.init();
 		console.log("Component");

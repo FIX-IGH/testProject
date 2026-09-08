@@ -2,19 +2,13 @@
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
     displayBlock="true"
-    controller="tp.example.controller.App">
+    controllerName="tp.example.controller.App">
+    <Shell>
         <App id="app">
             <Page title="Home Page">
                 <Panel headerText="Test Panel">
-                    <Text text="{test>/Test}"/>
                     <Button text="Search" press=".onButtonPress" />
-                    <List 
-                        id="categories"
-                        items="{test>/Categories}">
-                        <StandardListItem 
-                            title="{test>Category}">
-                        </StandardListItem>
-                        </List>
+                    <MultiInput id="multiInput" width="100%"/>
                     <List
                         id="list"
                         items="{test>/Restaurants}" >
@@ -25,7 +19,7 @@
                 </Panel>
             </Page>
         </App>
-   
+    </Shell>
 
 
 </mvc:View>
