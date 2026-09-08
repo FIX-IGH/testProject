@@ -3,12 +3,50 @@
     xmlns="sap.m"
     displayBlock="true"
     controllerName="tp.example.controller.Restaurant">
-
     <Page title="Home Page">
-        <Panel headerText="Test Panel">
-            <Text text="{test>OwnerName}"></Text>
-        </Panel>
+        <IconTabBar 
+        id="idIconTabBarFiori2"
+		expanded="{device>/isNoPhone}"
+		class="sapUiResponsiveContentPadding" 
+        headerMode="Inline">
+            <items>
+                <IconTabFilter text="Menu" key="menu">
+                    <Text text="{test>OwnerName}"></Text>
+                    <List
+                        id="menu2"
+                        items="{test>Dishes}" >
+                        <StandardListItem
+                            title="{test>Name}"
+                            description="{test>Category}"
+                            type="Navigation"
+                            press=".onPress"/>
+                    </List>
+                </IconTabFilter>
+                <IconTabFilter key="reviews" text="Reviews" count="{= ${test>Comments}.length}">
+                <List
+                    headerText="Reviews"
+                    items="{test>Comments}" >
+                    <FeedListItem
+                        sender="{test>Author}"
+                        icon="{AuthorPicUrl}"
+                        senderPress=".onPress"
+                        iconPress=".onPress"
+                        info="{test>Type}"
+                        timestamp="{test>Date}"
+                        text="{test>Message}"
+                        convertLinksToAnchorTags="All"
+                        actions="{path: 'Actions', templateShareable: false}">
+                        <FeedListItemAction text="{Text}" icon="{Icon}" key="{Key}" press=".onActionPressed" />
+                    </FeedListItem>
+                </List>
+                <FeedInput
+                    post=".onPost"
+                    icon="test-resources/sap/m/images/dronning_victoria.jpg"
+                    class="sapUiSmallMarginTopBottom" />
+                <RatingIndicator maxValue="5" class="sapUiSmallMarginBottom" value="2" />
+                </IconTabFilter>
+                <IconTabFilter key="contact" text="Contact"/>
+            </items>
+        </IconTabBar>
     </Page>
-
-
 </mvc:View>

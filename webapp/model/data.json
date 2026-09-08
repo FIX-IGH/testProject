@@ -69,6 +69,29 @@
             "Telephone": "324920322",
             "Categories" : [
                 "Sushi"
+            ],
+            "Dishes" : [
+                {
+                    "Category" : "Sushi",
+                    "Name" : "Nigiri",
+                    "Price" : "500"
+                }
+            ],
+            "Comments" : [
+                {
+                    "Author" : "Hans Müller",
+                    "Message" : "Great Restaurant! Highly recommend!",
+                    "Rating" : "5",
+                    "Type": "Comment",
+                    "Date": "March 04 2013"
+                },
+                {
+                    "Author" : "Ursula Franz",
+                    "Message" : "Decent, but nothing special. I rate it 3 stars.",
+                    "Rating" : "3",
+                    "Type": "Comment",
+                    "Date": "April 20 2014"
+                }
             ]
         }
     ],
