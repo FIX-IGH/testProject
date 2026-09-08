@@ -8,12 +8,18 @@ import syncStyleClass from "sap/ui/core/syncStyleClass";
 import Fragment from "sap/ui/core/Fragment";
 import Button, { Button$PressEvent } from "sap/m/Button";
 import SelectDialog, { SelectDialog$ConfirmEvent } from "sap/m/SelectDialog";
-import Token from "sap/m/Token";
+import Token, { Token$DeleteEvent } from "sap/m/Token";
 import MultiInput from "sap/m/MultiInput";
 import List from "sap/m/List";
 import ListBinding from "sap/ui/model/ListBinding";
 import Filter from "sap/ui/model/Filter";
 import FilterOperator from "sap/ui/model/FilterOperator";
+import View from "sap/ui/core/mvc/View";
+import { DataSetItem$SelectedEvent } from "sap/ui/ux3/DataSetItem";
+import { ListItemBase$PressEvent } from "sap/m/ListItemBase";
+import UIComponent from "sap/ui/core/UIComponent";
+import Route, { Route$PatternMatchedEvent } from "sap/ui/core/routing/Route";
+import Context from "sap/ui/model/Context";
 
 /**
  * @namespace tp.example.controller
@@ -60,6 +66,7 @@ export default class App extends Controller {
                     key: oItems[i].getTitle(),
                     text: oItems[i].getTitle()
                 });
+                oToken.attachDelete(this.onDelete, this);
                 oMultiInput.addToken(oToken);
             }
         } else {
@@ -68,6 +75,12 @@ export default class App extends Controller {
         this.onSearch();
 
         //oEvent.getSource().getBinding("items").filter([]);
+    }
+
+    public onDelete(oEvent : Token$DeleteEvent) : void {
+        var oToken = oEvent.getSource();
+        oToken.destroy();
+        this.onSearch();
     }
 
     public onSearch() : void {
@@ -89,10 +102,12 @@ export default class App extends Controller {
 		oBinding?.filter(oCombinedFilter);
     }
 
-        /**
-    public onButtonPress(): void {
-        console.log("Test")
-    }
-        */
+	onPress(oEvent: ListItemBase$PressEvent): void {
+		const item = oEvent.getSource();
+		const router = UIComponent.getRouterFor(this)
+		router.navTo("restaurant", {
+			restaurantPath: window.encodeURIComponent(((item.getBindingContext("test") as Context).getPath() as string).substring(1))
+		});
+	}
 
 };

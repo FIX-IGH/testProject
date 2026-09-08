@@ -49,6 +49,38 @@
         "type": "sap.ui.model.json.JSONModel",
         "uri": "model/data.json"
       }
+    },
+    "routing" : {
+        "config" : {
+          "routerClass" : "sap.m.routing.Router",
+          "type" : "View",
+          "viewType" : "XML",
+          "path" : "tp.example.view",
+          "controlId" : "app",
+          "controlAggregation" : "pages"
+        },
+        "routes" : [
+            {
+                "pattern" : "",
+                "name": "home",
+                "target": "home"
+            },
+            {
+              "pattern" : "restaurant/{restaurantPath}",
+              "name" : "restaurant",
+              "target" : "restaurant"
+            }
+        ],
+        "targets" : {
+          "home" : {
+              "id" : "home",
+              "name" : "Home"
+          },
+          "restaurant" : {
+              "id" : "restaurant",
+              "name" : "Restaurant"
+          }
+        }
     }
   }
 }

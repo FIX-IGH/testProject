@@ -1,0 +1,14 @@
+<mvc:View
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    displayBlock="true"
+    controllerName="tp.example.controller.Restaurant">
+
+    <Page title="Home Page">
+        <Panel headerText="Test Panel">
+            <Text text="{test>OwnerName}"></Text>
+        </Panel>
+    </Page>
+
+
+</mvc:View>

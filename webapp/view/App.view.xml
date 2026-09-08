@@ -6,17 +6,20 @@
     <Shell>
         <App id="app">
             <Page title="Home Page">
-                <Panel headerText="Test Panel">
-                    <Button text="Search" press=".onButtonPress" />
-                    <MultiInput id="multiInput" width="100%"/>
+
+                    <Button text="Search" width="10%" press=".onButtonPress" />
+                    <MultiInput id="multiInput" width="90%" tokenUpdate=".onTokenUpdate"/>
+
                     <List
                         id="list"
                         items="{test>/Restaurants}" >
                         <StandardListItem
                             title="{test>RestaurantName}"
-                            description="{test>OwnerName}"/>
+                            description="{test>OwnerName}"
+                            type="Navigation"
+                            press=".onPress"/>
                     </List>
-                </Panel>
+
             </Page>
         </App>
     </Shell>
