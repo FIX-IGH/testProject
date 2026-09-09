@@ -74,7 +74,17 @@
                 {
                     "Category" : "Sushi",
                     "Name" : "Nigiri",
-                    "Price" : "500"
+                    "Price" : "599"
+                },
+                {
+                    "Category" : "Sushi",
+                    "Name" : "Sashimi",
+                    "Price" : "599"
+                },
+                {
+                    "Category" : "Sushi",
+                    "Name" : "Maki",
+                    "Price" : "549"
                 }
             ],
             "Comments" : [
@@ -91,6 +101,13 @@
                     "Rating" : "3",
                     "Type": "Comment",
                     "Date": "April 20 2014"
+                },
+                {
+                    "Author" : "Werner Peterson",
+                    "Message" : "It's not for me...",
+                    "Rating" : "2",
+                    "Type": "Comment",
+                    "Date": "April 22 2015"
                 }
             ]
         }

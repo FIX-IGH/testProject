@@ -48,6 +48,10 @@
       "test": {
         "type": "sap.ui.model.json.JSONModel",
         "uri": "model/data.json"
+      },
+      "order": {
+        "type": "sap.ui.model.json.JSONModel",
+        "uri": "model/order.json"
       }
     },
     "routing" : {

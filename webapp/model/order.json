@@ -1,0 +1,8 @@
+{
+    "Restaurant" : {},
+    "Dishes" : [                {
+                    "Category" : "Sushi",
+                    "Name" : "Maki",
+                    "Price" : "549"
+                }]
+}

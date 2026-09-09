@@ -1,26 +1,11 @@
 <mvc:View
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
+    xmlns:tnt="sap.tnt"
     displayBlock="true"
     controllerName="tp.example.controller.App">
     <Shell>
         <App id="app">
-            <Page title="Home Page">
-
-                    <Button text="Search" width="10%" press=".onButtonPress" />
-                    <MultiInput id="multiInput" width="90%" tokenUpdate=".onTokenUpdate"/>
-
-                    <List
-                        id="list"
-                        items="{test>/Restaurants}" >
-                        <StandardListItem
-                            title="{test>RestaurantName}"
-                            description="{test>OwnerName}"
-                            type="Navigation"
-                            press=".onPress"/>
-                    </List>
-
-            </Page>
         </App>
     </Shell>
 
