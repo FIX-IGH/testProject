@@ -1,0 +1,17 @@
+<core:FragmentDefinition 
+    xmlns:form="sap.ui.layout.form"
+    xmlns="sap.m"
+    core:require="{formatter: 'tp/example/model/formatter'}"
+    xmlns:core="sap.ui.core"> 
+    <Button
+        id="DefaultIconButton"
+        class="sapUiTinyMarginEnd"
+        icon="sap-icon://cart"
+        type="{/buttonType}"
+        enabled= "{= ${order>/Dishes}.length > 0}"
+        press=".onCartPress">
+        <customData>
+            <BadgeCustomData key="badge" value="{=${order>/Dishes}.length}" visible="true"/>
+        </customData>
+    </Button>
+</core:FragmentDefinition>

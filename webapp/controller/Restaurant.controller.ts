@@ -9,12 +9,16 @@ import ObjectListItem from "sap/m/ObjectListItem";
 import { ListItemBase$PressEvent } from "sap/m/ListItemBase";
 import Context from "sap/ui/model/Context";
 import View from "sap/ui/core/mvc/View";
+import SelectDialog from "sap/m/SelectDialog";
+import Fragment from "sap/ui/core/Fragment";
+import Dialog from "sap/m/Dialog";
 
 /**
  * @namespace tp.example.controller
  */
 export default class Restaurant extends Controller {
-
+	private pDialog: Promise<Dialog> | null = null;
+	private pView: View;
 	onInit(): void {
 		const router = UIComponent.getRouterFor(this);
 		(router.getRoute("restaurant") as Route).attachPatternMatched(this.onObjectMatched, this);
@@ -26,7 +30,7 @@ export default class Restaurant extends Controller {
 			path: "/" + window.decodeURIComponent((event.getParameter("arguments") as any).restaurantPath),
 			model: "test"
 		});
-		
+		this.pView = this.getView() as View;
 	}
 
 	onNavBack(): void {
@@ -37,25 +41,56 @@ export default class Restaurant extends Controller {
 			window.history.go(-1);
 		} else {
 			const router = UIComponent.getRouterFor(this);
-			router.navTo("app", {}, true);
+			router.navTo("home", {}, true);
 		}
 	}
 	
 	onAddDish(oEvent : ListItemBase$PressEvent): void {
-		var order = this.getView()?.getModel("order") as JSONModel;
+		var order = this.getOwnerComponent()?.getModel("order") as JSONModel;
 		var oItem = oEvent.getSource();
 		var context = oItem.getBindingContext("test") as Context;
 		//order.setProperty("/Restaurant", context.getProperty("/Restaurant"));
-		var dishes = order.getProperty("/Dishes");
+		var dishes = order.getProperty("/Dishes").slice();
 		dishes.push(context.getProperty(""))
 		order.setProperty("/Dishes", dishes)
-		console.log(order);
-		this.getView().byId("DefaultIconButton").setText(order.getProperty("/Dishes").length)
+		order.setProperty("/Restaurant", this.pView.getBindingContext("test")?.getProperty(""))
+		order.updateBindings(true);
+		console.log(this.pView.getBindingContext("test")?.getPath())
 	}
 
-	getDishesLength(aDishes) {
-		console.log(aDishes)
+	async onCartPress(): Promise<void> {
+		const view = this.getView();
+		if (!view) return;
 
-		return aDishes.length;
+		if (!this.pDialog) {
+			this.pDialog = Fragment.load({
+				id: view.getId(),
+				name: "tp.example.view.Cart",
+				controller: this
+			}).then((oDialog) => {
+				const dialog = oDialog as Dialog;
+				view.addDependent(dialog);
+				return dialog;
+			});
+		}
+
+	const onClickOutsideClose = async (oEvent : MouseEvent): Promise<void> => {
+		const target = oEvent.target as HTMLElement
+		if (target.id == "sap-ui-blocklayer-popup") {
+			(await this.pDialog)?.close();
+			document.removeEventListener("click", onClickOutsideClose);
+		}
 	}
+
+		// Dialog anzeigen
+		const dialog = await this.pDialog;
+		document.addEventListener("click", onClickOutsideClose);
+		dialog.open();
+	}
+
+	onButtonCheckout(): void {
+		const router = UIComponent.getRouterFor(this);
+		router.navTo("checkout");
+	}
+
 };

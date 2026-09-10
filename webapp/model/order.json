@@ -1,8 +1,23 @@
 {
-    "Restaurant" : {},
-    "Dishes" : [                {
-                    "Category" : "Sushi",
-                    "Name" : "Maki",
-                    "Price" : "549"
-                }]
+    "Restaurant" :         {
+            "RestaurantID": "1",
+            "RestaurantName" : "Pizza Palais",
+            "OwnerName": "Guiseppe Garibaldi",
+            "Street": "Dietmar-Hopp-Allee 16",
+            "PostCode": "69190",
+            "City": "Walldorf",
+            "Country": "DE",
+            "Email": "ggaribaldi@sap.de",
+            "Telephone": "0871690495",
+            "Categories" : [
+                "Pizza", "Pasta"
+            ]
+        },
+    "Dishes" : [],
+    "PaymentOptions" : [
+        { "key": "PayPal", "text": "PayPal" },
+        { "key": "Lastschrift", "text": "Lastschrift" },
+        { "key": "Google Pay", "text": "Google Pay" },
+        { "key": "Kreditkarte", "text": "Kreditkarte" }
+    ]
 }

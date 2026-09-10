@@ -21,16 +21,19 @@ import UIComponent from "sap/ui/core/UIComponent";
 import Route, { Route$PatternMatchedEvent } from "sap/ui/core/routing/Route";
 import Context from "sap/ui/model/Context";
 
+import Restaurant from "./Restaurant.controller";
+
 /**
  * @namespace tp.example.controller
  */
 
 export default class App extends Controller {
     private pDialog: Promise<SelectDialog> | null = null;
+    private oDialog: Promise<Dialog> | null = null;
+
     onInit(): void | undefined {
         console.log("AppController");
     }
-
     
     public async onButtonPress(): Promise<void> {
         console.log("Test");
@@ -105,9 +108,45 @@ export default class App extends Controller {
 	onPress(oEvent: ListItemBase$PressEvent): void {
 		const item = oEvent.getSource();
 		const router = UIComponent.getRouterFor(this)
+        console.log(item.getBindingContext("test"))
 		router.navTo("restaurant", {
 			restaurantPath: window.encodeURIComponent(((item.getBindingContext("test") as Context).getPath() as string).substring(1))
 		});
 	}
+
+    async onCartPress(): Promise<void> {
+        const view = this.getView();
+        if (!view) return;
+
+        if (!this.oDialog) {
+            this.oDialog = Fragment.load({
+                id: view.getId(),
+                name: "tp.example.view.Cart",
+                controller: this
+            }).then((oDialog) => {
+                const dialog = oDialog as Dialog;
+                view.addDependent(dialog);
+                return dialog;
+            });
+        }
+
+    const onClickOutsideClose = async (oEvent : MouseEvent): Promise<void> => {
+        const target = oEvent.target as HTMLElement
+        if (target.id == "sap-ui-blocklayer-popup") {
+            (await this.oDialog)?.close();
+            document.removeEventListener("click", onClickOutsideClose);
+        }
+    }
+
+        // Dialog anzeigen
+        const dialog = await this.oDialog;
+        document.addEventListener("click", onClickOutsideClose);
+        dialog.open();
+    }
+
+    onButtonCheckout(): void {
+        const router = UIComponent.getRouterFor(this);
+        router.navTo("checkout");
+    }
 
 };

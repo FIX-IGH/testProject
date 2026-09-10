@@ -1,0 +1,7 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<BusyDialog
+		title="Processing Payment"
+		close=".onDialogClosed" />
+</core:FragmentDefinition>

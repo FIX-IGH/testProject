@@ -73,6 +73,11 @@
               "pattern" : "restaurant/{restaurantPath}",
               "name" : "restaurant",
               "target" : "restaurant"
+            },
+            {
+              "pattern" : "checkout",
+              "name" : "checkout",
+              "target" : "checkout"
             }
         ],
         "targets" : {
@@ -83,6 +88,10 @@
           "restaurant" : {
               "id" : "restaurant",
               "name" : "Restaurant"
+          },
+          "checkout" : {
+              "id" : "checkout",
+              "name" : "Checkout"
           }
         }
     }

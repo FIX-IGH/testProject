@@ -1,0 +1,30 @@
+<core:FragmentDefinition 
+    xmlns:form="sap.ui.layout.form"
+	xmlns="sap.m"
+    core:require="{formatter: 'tp/example/model/formatter'}"
+	xmlns:core="sap.ui.core"> 
+    <Dialog id="CartDialog" binding="{order>/}" title="{order>Restaurant/RestaurantName}">  
+        <List
+        noDataText="No Products Found"
+        delete=".onDelete"
+        items="{
+            path: 'order>/Dishes'
+        }">
+        <items>
+            <ObjectListItem
+                title="{order>Name}"
+                number="{= ${order>Price}/100}"
+                numberUnit="EUR"
+                type="Active">
+            </ObjectListItem>
+        </items>
+        </List>
+    <Panel >
+        <Text text="Total Cost: {= ${formatter: 'formatter.totalSum', path: 'order>/Dishes'}/100} EUR"></Text>
+        <Button text="Checkout" press=".onButtonCheckout"></Button>
+    </Panel>
+
+    
+    
+    </Dialog>  
+</core:FragmentDefinition>

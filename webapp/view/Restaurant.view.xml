@@ -24,9 +24,10 @@
                             title="{test>Name}"
                             number="{= ${test>Price}/100}"
                             numberUnit="EUR"
-                            type="Navigation"
+                            type="Active"
                             press=".onAddDish">
                             <ObjectAttribute text="{test>Category}" />
+                            <ObjectAttribute text="{formatter: 'formatter.numItems', parts : [{path: 'order>/Dishes'}, {path: 'test>Name'}]}" />
                         </ObjectListItem>
                     </List>
                 </IconTabFilter>
@@ -56,20 +57,8 @@
                 <IconTabFilter key="contact" text="Contact"/>
             </items>
         </IconTabBar>
-        <Button
-            id="DefaultIconButton"
-            class="sapUiTinyMarginEnd"
-            icon="sap-icon://cart"
-            type="{/buttonType}"
-            enabled= "{= ${order>/Dishes}.length > 0}"
-            text="{=${order>/Dishes}.length.toString()}">
-            
-            <customData>
-                <BadgeCustomData key="badge" value="{parts: [{path: 'order>/Dishes'}], formatter: '.getDishesLength'}" visible="true"/>
-            </customData>
-        </Button>
 
-        
+        <core:Fragment fragmentName="tp.example.view.CartButton" type="XML"/>
         <!-- value="{= ${order>/Dishes}.length}" -->
     </Page>
 </mvc:View>

@@ -36,5 +36,35 @@ export default {
         else {
             return "No reviews yet"
         }
+    },
+
+    numItems(arr: Array<any>, name: String) {
+        if (arr != null) {
+            if (arr.filter(e => e.Name == name).length > 0) {
+                return arr.filter(e => e.Name == name).length + " in Shopping Cart"
+            }
+            else {
+                return "None"
+            }
+        }
+        else {
+            return "None"
+        }
+    },
+
+    totalSum(arr: Array<any>) {
+        if (arr != null) {
+            if (arr.length > 0) {
+                console.log(arr.reduce((accumulator, currentValue) => accumulator + parseInt(currentValue.Price), 0))
+                return arr.reduce((accumulator, currentValue) => accumulator + parseInt(currentValue.Price), 0);
+            }
+            else {
+                return "None"
+            }
+        }
+        else {
+            return "None"
+        }
     }
+
 }

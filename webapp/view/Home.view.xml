@@ -1,19 +1,12 @@
 <mvc:View
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
+    xmlns:core="sap.ui.core"
     xmlns:layout="sap.ui.layout"
     displayBlock="true"
     controllerName="tp.example.controller.App">
     <Page title="Home Page">
-            <Button
-                id="cartButton"
-                class="sapUiTinyMarginEnd"
-                icon="sap-icon://cart"
-                type="{/buttonType}">
-                <customData>
-                    <BadgeCustomData key="badge" value="{= ${order>/Dishes}.length}" visible="true"/>
-                </customData>
-            </Button>
+            <core:Fragment fragmentName="tp.example.view.CartButton" type="XML"/>
             <Button text="Search" width="10%" press=".onButtonPress" />
             <MultiInput id="multiInput" width="90%" tokenUpdate=".onTokenUpdate"/>
             <List

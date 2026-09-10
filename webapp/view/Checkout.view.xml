@@ -1,0 +1,70 @@
+<mvc:View
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    core:require="{formatter: 'tp/example/model/formatter'}"
+    xmlns:layout="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    displayBlock="true"
+    controllerName="tp.example.controller.Checkout">
+    <Page title="Home Page" binding="{order>/}">
+            <List
+                id="orderList"
+                items="{order>/Dishes}" >
+                <ObjectListItem
+                    title="{order>Name}"
+                    number="{= ${order>Price}/100}"
+                    numberUnit="EUR"
+                    type="Active"
+                    press=".onPress">
+                    <ObjectAttribute text="{order>Category}" />
+                    <ObjectAttribute text="{formatter: 'formatter.numItems', parts : [{path: 'order>/Dishes'}, {path: 'order>Name'}]}" />
+                    </ObjectListItem>
+            </List>
+            <List >
+                <ObjectListItem
+                    title="Total"
+                    number="{= ${formatter: 'formatter.totalSum', path: 'order>/Dishes'}/100}"
+                    numberUnit="EUR"
+                    type="Active"
+                    press=".onPress">
+                    <ObjectAttribute text="{= ${order>Dishes}.length} items" /> 
+                    </ObjectListItem>
+            </List>
+    <f:SimpleForm editable="true" layout="ResponsiveGridLayout" title="Lieferadresse">
+        <f:content>
+                <Label text="Straße und Hausnummer: "></Label>
+                <Input
+                    placeholder="Enter Adress"/>
+                <Label text="PLZ: "></Label>
+                <Input
+                    placeholder="Enter Zipcode"/>
+                <Label text="Land: "></Label>
+                <Input
+                    placeholder="Enter Country"/>
+        </f:content>
+    </f:SimpleForm>
+
+
+    <f:SimpleForm editable="true" layout="ResponsiveGridLayout" title="Bezahlmethode">
+        <f:content>
+            <Label text="Payment Method: "></Label>
+                <ComboBox
+                    items="{
+                        path: 'order>PaymentOptions',
+                        sorter: { path: 'order>text' }
+                    }">
+                    <core:Item key="{order>key}" text="{order>text}" />
+                </ComboBox>
+                <Label text="Email: "></Label>
+                <Input
+                    placeholder="Enter Email"/>
+                <Label text="Passwort"></Label>
+                <Input
+                    type="Password"
+                    placeholder="Enter password" />
+                <Button text="Confirm Purchase" press=".onConfirmPurchase"></Button>
+        </f:content>
+    </f:SimpleForm>
+    </Page>
+</mvc:View>
