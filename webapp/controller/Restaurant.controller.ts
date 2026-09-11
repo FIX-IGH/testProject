@@ -13,6 +13,7 @@ import SelectDialog from "sap/m/SelectDialog";
 import Fragment from "sap/ui/core/Fragment";
 import Dialog from "sap/m/Dialog";
 import MessageBox from "sap/m/MessageBox";
+import { ListBase$DeleteEvent } from "sap/m/ListBase";
 
 /**
  * @namespace tp.example.controller
@@ -107,6 +108,22 @@ export default class Restaurant extends Controller {
 	onButtonCheckout(): void {
 		const router = UIComponent.getRouterFor(this);
 		router.navTo("checkout");
+	}
+
+	onDeleteItem(oEvent : ListBase$DeleteEvent): void {
+		var order = this.getOwnerComponent()?.getModel("order") as JSONModel;
+		var oItem = oEvent.getParameter("listItem");
+		var context = oItem?.getBindingContext("order") as Context;
+		//console.log(context.getProperty(""))
+		var dishes = order.getProperty("/Dishes");
+
+		var index = dishes.indexOf(context.getProperty(""));
+		if (index !== -1) {
+			dishes.splice(index, 1);
+		}
+		//order.setProperty("/Restaurant", context.getProperty("/Restaurant"));
+		order.setProperty("/Dishes", dishes);
+		order.updateBindings(true);
 	}
 
 	onProfilePress(): void {

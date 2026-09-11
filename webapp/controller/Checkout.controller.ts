@@ -8,6 +8,8 @@ import Route from "sap/ui/core/routing/Route";
 import UIComponent from "sap/ui/core/UIComponent";
 import JSONModel from "sap/ui/model/json/JSONModel";
 import History from "sap/ui/core/routing/History";
+import { ListBase$DeleteEvent } from "sap/m/ListBase";
+import Context from "sap/ui/model/Context";
 
 /**
  * @namespace tp.example.controller
@@ -65,6 +67,22 @@ export default class Checkout extends Controller {
 			const router = UIComponent.getRouterFor(this);
 			router.navTo("home", {}, true);
 		}
+	}
+
+	onDeleteItem(oEvent : ListBase$DeleteEvent): void {
+		var order = this.getOwnerComponent()?.getModel("order") as JSONModel;
+		var oItem = oEvent.getParameter("listItem");
+		var context = oItem?.getBindingContext("order") as Context;
+		//console.log(context.getProperty(""))
+		var dishes = order.getProperty("/Dishes");
+
+		var index = dishes.indexOf(context.getProperty(""));
+		if (index !== -1) {
+			dishes.splice(index, 1);
+		}
+		//order.setProperty("/Restaurant", context.getProperty("/Restaurant"));
+		order.setProperty("/Dishes", dishes);
+		order.updateBindings(true);
 	}
 
 }

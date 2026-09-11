@@ -3,10 +3,11 @@
 	xmlns="sap.m"
     core:require="{formatter: 'tp/example/model/formatter'}"
 	xmlns:core="sap.ui.core"> 
-    <Dialog id="CartDialog" binding="{order>/}" title="{order>Restaurant/RestaurantName}">  
+    <Dialog id="CartDialog" title="{order>Restaurant/RestaurantName}">  
         <List
         noDataText="No Products Found"
-        delete=".onDelete"
+        mode="Delete" 
+        delete=".onDeleteItem"
         items="{
             path: 'order>/Dishes'
         }">

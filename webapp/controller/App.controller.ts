@@ -23,6 +23,7 @@ import Context from "sap/ui/model/Context";
 import History from "sap/ui/core/routing/History";
 
 import Restaurant from "./Restaurant.controller";
+import { ListBase$DeleteEvent } from "sap/m/ListBase";
 
 /**
  * @namespace tp.example.controller
@@ -153,6 +154,22 @@ export default class App extends Controller {
     onButtonCheckout(): void {
         const router = UIComponent.getRouterFor(this);
         router.navTo("checkout");
+    }
+
+    onDeleteItem(oEvent : ListBase$DeleteEvent): void {
+        var order = this.getOwnerComponent()?.getModel("order") as JSONModel;
+        var oItem = oEvent.getParameter("listItem");
+        var context = oItem?.getBindingContext("order") as Context;
+        //console.log(context.getProperty(""))
+        var dishes = order.getProperty("/Dishes");
+
+        var index = dishes.indexOf(context.getProperty(""));
+        if (index !== -1) {
+            dishes.splice(index, 1);
+        }
+        //order.setProperty("/Restaurant", context.getProperty("/Restaurant"));
+        order.setProperty("/Dishes", dishes);
+        order.updateBindings(true);
     }
 
     onNavBack(): void {

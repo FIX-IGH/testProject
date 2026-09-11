@@ -11,7 +11,9 @@
     showNavButton="true"
     navButtonPress=".onNavBack">
             <List
-                items="{order>/Dishes}" >
+                items="{order>/Dishes}" 
+                mode="Delete" 
+                delete=".onDeleteItem">
                 <ObjectListItem
                     title="{order>Name}"
                     number="{= ${order>Price}/100}"
