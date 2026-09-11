@@ -7,9 +7,10 @@
     xmlns:f="sap.ui.layout.form"
     displayBlock="true"
     controllerName="tp.example.controller.Checkout">
-    <Page title="Home Page" binding="{order>/}">
+    <Page title="Checkout" binding="{order>/}"
+    showNavButton="true"
+    navButtonPress=".onNavBack">
             <List
-                id="orderList"
                 items="{order>/Dishes}" >
                 <ObjectListItem
                     title="{order>Name}"
@@ -33,37 +34,43 @@
             </List>
     <f:SimpleForm editable="true" layout="ResponsiveGridLayout" title="Lieferadresse">
         <f:content>
-                <Label text="Straße und Hausnummer: "></Label>
+                <Label text="Straße und Hausnummer" required="true"></Label>
                 <Input
-                    placeholder="Enter Adress"/>
-                <Label text="PLZ: "></Label>
+                    placeholder="Enter Adress" value="{order>Adress/Street}"/>
+                <Label text="PLZ" required="true"></Label>
                 <Input
-                    placeholder="Enter Zipcode"/>
-                <Label text="Land: "></Label>
+                    placeholder="Enter Zipcode" value="{order>Adress/PostCode}"/>
+                <Label text="Stadt" required="true"></Label>
                 <Input
-                    placeholder="Enter Country"/>
+                    placeholder="Enter City" value="{order>Adress/City}"/>
+                <Label text="Land" required="true"></Label>
+                <Input
+                    placeholder="Enter Country" value="{order>Adress/Country}"/>
         </f:content>
     </f:SimpleForm>
 
 
     <f:SimpleForm editable="true" layout="ResponsiveGridLayout" title="Bezahlmethode">
         <f:content>
-            <Label text="Payment Method: "></Label>
+            <Label text="Payment Method" required="true"></Label>
                 <ComboBox
                     items="{
                         path: 'order>PaymentOptions',
                         sorter: { path: 'order>text' }
-                    }">
+                    }"
+                    value="{order>PaymentMethod}">
                     <core:Item key="{order>key}" text="{order>text}" />
                 </ComboBox>
-                <Label text="Email: "></Label>
-                <Input
+                <Label text="Email" required="true"></Label>
+                <Input 
                     placeholder="Enter Email"/>
-                <Label text="Passwort"></Label>
+                <Label text="Passwort" required="true"></Label>
                 <Input
                     type="Password"
                     placeholder="Enter password" />
-                <Button text="Confirm Purchase" press=".onConfirmPurchase"></Button>
+                <Button text="Confirm Purchase" 
+                enabled="{= ${order>Adress/Street} !== null &amp;&amp; ${order>Adress/PostCode} !== null &amp;&amp; ${order>Adress/City} !== null &amp;&amp; ${order>Adress/Country} !== null }" 
+                press=".onConfirmPurchase"></Button>
         </f:content>
     </f:SimpleForm>
     </Page>

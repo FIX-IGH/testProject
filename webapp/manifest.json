@@ -52,6 +52,10 @@
       "order": {
         "type": "sap.ui.model.json.JSONModel",
         "uri": "model/order.json"
+      },
+      "profile" : {
+        "type": "sap.ui.model.json.JSONModel",
+        "uri": "model/profile.json"
       }
     },
     "routing" : {
@@ -78,6 +82,11 @@
               "pattern" : "checkout",
               "name" : "checkout",
               "target" : "checkout"
+            },
+            {
+              "pattern" : "profile",
+              "name" : "profile",
+              "target" : "profile"
             }
         ],
         "targets" : {
@@ -92,6 +101,10 @@
           "checkout" : {
               "id" : "checkout",
               "name" : "Checkout"
+          },
+          "profile" : {
+              "id" : "profile",
+              "name" : "Profile"
           }
         }
     }

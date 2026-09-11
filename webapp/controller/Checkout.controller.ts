@@ -4,6 +4,10 @@ import Fragment from "sap/ui/core/Fragment";
 import syncStyleClass from "sap/ui/core/syncStyleClass";
 import View from "sap/ui/core/mvc/View";
 import MessageBox from "sap/m/MessageBox";
+import Route from "sap/ui/core/routing/Route";
+import UIComponent from "sap/ui/core/UIComponent";
+import JSONModel from "sap/ui/model/json/JSONModel";
+import History from "sap/ui/core/routing/History";
 
 /**
  * @namespace tp.example.controller
@@ -21,15 +25,46 @@ export default class Checkout extends Controller {
                     const dialog = pBusyDialog as BusyDialog;
 					this.getView()?.addDependent(dialog);
 					syncStyleClass("sapUiSizeCompact", this.getView() as View, dialog);
+					dialog.attachClose(() => {
+							this.onPurchase();
+						});
 					return dialog;
 				});
 			}
 
             const dialog = await this.pBusyDialog;
-            dialog.attachClose(() => {MessageBox.success("Payment processed successfully!")});
             dialog.open();
             setTimeout(async () => (await this.pBusyDialog)?.close(), 2000);
        
     }
+
+	onPurchase(): void {
+		var order = this.getOwnerComponent()?.getModel("order") as JSONModel;
+		order.setProperty("/Date", new Date().toLocaleDateString())
+		var profile = this.getOwnerComponent()?.getModel("profile") as JSONModel;
+		var previousOrders = profile.getProperty("/previousOrders").slice();
+		previousOrders.push(JSON.parse(JSON.stringify(order.getProperty("/"))))
+		profile.setProperty("/previousOrders", previousOrders)
+		order.setProperty("/Restaurant", {});
+		order.setProperty("/Dishes", []);
+		//order.updateBindings(true);
+		console.log(order)
+
+		MessageBox.success("Payment processed successfully!"); 		
+		const router = UIComponent.getRouterFor(this);
+		router.navTo("profile");
+	}
+
+	onNavBack(): void {
+		const history = History.getInstance();
+		const previousHash = history.getPreviousHash();
+
+		if (previousHash !== undefined) {
+			window.history.go(-1);
+		} else {
+			const router = UIComponent.getRouterFor(this);
+			router.navTo("home", {}, true);
+		}
+	}
 
 }

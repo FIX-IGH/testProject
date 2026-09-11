@@ -12,6 +12,7 @@ import View from "sap/ui/core/mvc/View";
 import SelectDialog from "sap/m/SelectDialog";
 import Fragment from "sap/ui/core/Fragment";
 import Dialog from "sap/m/Dialog";
+import MessageBox from "sap/m/MessageBox";
 
 /**
  * @namespace tp.example.controller
@@ -50,12 +51,27 @@ export default class Restaurant extends Controller {
 		var oItem = oEvent.getSource();
 		var context = oItem.getBindingContext("test") as Context;
 		//order.setProperty("/Restaurant", context.getProperty("/Restaurant"));
-		var dishes = order.getProperty("/Dishes").slice();
-		dishes.push(context.getProperty(""))
-		order.setProperty("/Dishes", dishes)
-		order.setProperty("/Restaurant", this.pView.getBindingContext("test")?.getProperty(""))
-		order.updateBindings(true);
-		console.log(this.pView.getBindingContext("test")?.getPath())
+		if (order.getProperty("/Restaurant/RestaurantName") != undefined && this.pView.getBindingContext("test")?.getProperty("RestaurantName") != order.getProperty("/Restaurant/RestaurantName")) {
+			MessageBox.confirm("You have an unfinished order for " + order.getProperty("/Restaurant/RestaurantName")+ ". Do you want to start a new order?", {
+				title: "Cancel current order?",
+				onClose: (sAction) => {
+					if (sAction === MessageBox.Action.OK) {
+						var dishes = [];
+						dishes.push(context.getProperty(""))
+						order.setProperty("/Dishes", dishes)
+						order.setProperty("/Restaurant", this.pView.getBindingContext("test")?.getProperty(""))
+						order.updateBindings(true);
+					}
+				}
+			});
+		}
+		else {
+			var dishes = order.getProperty("/Dishes").slice();
+			dishes.push(context.getProperty(""))
+			order.setProperty("/Dishes", dishes)
+			order.setProperty("/Restaurant", this.pView.getBindingContext("test")?.getProperty(""))
+			order.updateBindings(true);
+		}
 	}
 
 	async onCartPress(): Promise<void> {
@@ -91,6 +107,11 @@ export default class Restaurant extends Controller {
 	onButtonCheckout(): void {
 		const router = UIComponent.getRouterFor(this);
 		router.navTo("checkout");
+	}
+
+	onProfilePress(): void {
+		const router = UIComponent.getRouterFor(this);
+		router.navTo("profile");
 	}
 
 };

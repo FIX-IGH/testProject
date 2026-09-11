@@ -20,6 +20,7 @@ import { ListItemBase$PressEvent } from "sap/m/ListItemBase";
 import UIComponent from "sap/ui/core/UIComponent";
 import Route, { Route$PatternMatchedEvent } from "sap/ui/core/routing/Route";
 import Context from "sap/ui/model/Context";
+import History from "sap/ui/core/routing/History";
 
 import Restaurant from "./Restaurant.controller";
 
@@ -105,7 +106,7 @@ export default class App extends Controller {
 		oBinding?.filter(oCombinedFilter);
     }
 
-	onPress(oEvent: ListItemBase$PressEvent): void {
+	public onPress(oEvent: ListItemBase$PressEvent): void {
 		const item = oEvent.getSource();
 		const router = UIComponent.getRouterFor(this)
         console.log(item.getBindingContext("test"))
@@ -144,9 +145,26 @@ export default class App extends Controller {
         dialog.open();
     }
 
+    onProfilePress(): void {
+        const router = UIComponent.getRouterFor(this);
+        router.navTo("profile");
+    }
+
     onButtonCheckout(): void {
         const router = UIComponent.getRouterFor(this);
         router.navTo("checkout");
+    }
+
+    onNavBack(): void {
+        const history = History.getInstance();
+        const previousHash = history.getPreviousHash();
+
+        if (previousHash !== undefined) {
+            window.history.go(-1);
+        } else {
+            const router = UIComponent.getRouterFor(this);
+            router.navTo("home", {}, true);
+        }
     }
 
 };

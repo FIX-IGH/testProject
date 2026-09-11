@@ -27,6 +27,23 @@
             "Telephone": "0916733365",
             "Categories" : [
                 "Pizza", "Pasta"
+            ],
+            "Dishes" : [
+                {
+                    "Category" : "Pizza",
+                    "Name" : "Pizza Salami",
+                    "Price" : "1299"
+                },
+                {
+                    "Category" : "Pizza",
+                    "Name" : "Pizza Hawaii",
+                    "Price" : "1299"
+                },
+                {
+                    "Category" : "Pizza",
+                    "Name" : "Pizza Tonno",
+                    "Price" : "1499"
+                }
             ]
         },
         {
@@ -55,6 +72,23 @@
             "Telephone": "6759011213",
             "Categories" : [
                 "Schnitzel", "Gyros", "Kebap", "Pommes"
+            ],
+            "Dishes" : [
+                {
+                    "Category" : "Schnitzel",
+                    "Name" : "Wiener Schnitzel",
+                    "Price" : "1299"
+                },
+                {
+                    "Category" : "Pommes",
+                    "Name" : "Pommes mit Mayo",
+                    "Price" : "599"
+                },
+                {
+                    "Category" : "Gyros",
+                    "Name" : "Gyrosteller mit Salat",
+                    "Price" : "1499"
+                }
             ]
         },
         {

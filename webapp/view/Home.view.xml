@@ -7,6 +7,7 @@
     controllerName="tp.example.controller.App">
     <Page title="Home Page">
             <core:Fragment fragmentName="tp.example.view.CartButton" type="XML"/>
+            <core:Fragment fragmentName="tp.example.view.ProfileButton" type="XML"/>
             <Button text="Search" width="10%" press=".onButtonPress" />
             <MultiInput id="multiInput" width="90%" tokenUpdate=".onTokenUpdate"/>
             <List

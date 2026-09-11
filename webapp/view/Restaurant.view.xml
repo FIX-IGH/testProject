@@ -2,6 +2,7 @@
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
     xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
     core:require="{formatter: 'tp/example/model/formatter'}"
     displayBlock="true"
     controllerName="tp.example.controller.Restaurant">
@@ -16,20 +17,23 @@
         headerMode="Inline">
             <items>
                 <IconTabFilter text="Menu" key="menu">
-                    <Text text="{test>OwnerName}"></Text>
-                    <List
-                        id="menu2"
-                        items="{test>Dishes}" >
-                        <ObjectListItem
-                            title="{test>Name}"
-                            number="{= ${test>Price}/100}"
-                            numberUnit="EUR"
-                            type="Active"
-                            press=".onAddDish">
-                            <ObjectAttribute text="{test>Category}" />
-                            <ObjectAttribute text="{formatter: 'formatter.numItems', parts : [{path: 'order>/Dishes'}, {path: 'test>Name'}]}" />
-                        </ObjectListItem>
-                    </List>
+                    <f:SimpleForm layout="ResponsiveGridLayout" title="Menu">
+                        <f:content>  
+                            <List
+                                id="menu2"
+                                items="{test>Dishes}" >
+                                <ObjectListItem
+                                    title="{test>Name}"
+                                    number="{= ${test>Price}/100}"
+                                    numberUnit="EUR"
+                                    type="Active"
+                                    press=".onAddDish">
+                                    <ObjectAttribute text="{test>Category}" />
+                                    <ObjectAttribute text="{formatter: 'formatter.numItems', parts : [{path: 'order>/Dishes'}, {path: 'test>Name'}]}" />
+                                </ObjectListItem>
+                            </List>
+                        </f:content>
+                    </f:SimpleForm>   
                 </IconTabFilter>
                 <IconTabFilter key="reviews" text="Reviews" count="{= ${test>Comments}.length}">
                 <List
@@ -54,11 +58,29 @@
                 <RatingIndicator maxValue="5" class="sapUiSmallMarginBottom" value="{formatter: 'formatter.calcAverage', path: 'test>Comments'}" />
                 <Text text="{formatter: 'formatter.ratingDesc', path: 'test>Comments'}" />
                 </IconTabFilter>
-                <IconTabFilter key="contact" text="Contact"/>
+                <IconTabFilter key="contact" text="Contact">
+                    <f:SimpleForm layout="ResponsiveGridLayout" title="Contact">
+                        <f:content>
+                                <Label text="Inhaber"></Label>
+                                <Text text="{test>OwnerName}"/>
+                                <Label text="Straße und Hausnummer"></Label>
+                                <Text text="{test>Street}"/>
+                                <Label text="PLZ"></Label>
+                                <Text text="{test>PostCode}"/>
+                                <Label text="Stadt"></Label>
+                                <Text text="{test>City}"/>
+                                <Label text="Email"></Label>
+                                <Text text="{test>Email}"/>
+                                <Label text="Telefon"></Label>
+                                <Text text="{test>Telephone}"/>
+                        </f:content>
+                    </f:SimpleForm>      
+                </IconTabFilter>
             </items>
         </IconTabBar>
 
         <core:Fragment fragmentName="tp.example.view.CartButton" type="XML"/>
+        <core:Fragment fragmentName="tp.example.view.ProfileButton" type="XML"/>
         <!-- value="{= ${order>/Dishes}.length}" -->
     </Page>
 </mvc:View>

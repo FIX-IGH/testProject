@@ -1,0 +1,47 @@
+<mvc:View
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:layout="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    core:require="{formatter: 'tp/example/model/formatter'}"
+    displayBlock="true"
+    controllerName="tp.example.controller.Profile">
+    <Page title="Profile" binding="{profile>/}"
+    showNavButton="true"
+    navButtonPress=".onNavBack">
+        <f:SimpleForm layout="ResponsiveGridLayout" title="Settings">
+            <f:content>  
+                <Label text="Password" required="true"></Label>
+                <Input id="oldPasswordInput" type="Password"
+                    placeholder="Enter Password"/>
+                <Label text="New Password" required="true"></Label>
+                <Input id="newPasswordInput" type="Password"
+                    placeholder="Enter New Password"/>
+                <Label text="Repeat Password" required="true"></Label>
+                <Input id="newPasswordInputRepeat" type="Password"
+                    placeholder="Repeat New Password"/>
+            <Button text="Change Password" press=".onPasswordChange"></Button>
+            </f:content>
+        </f:SimpleForm> 
+
+        <f:SimpleForm layout="ResponsiveGridLayout" title="Previous Orders">
+            <f:content>  
+            <List
+                id="orderlist"
+                items="{profile>/previousOrders}" >
+                <ObjectListItem
+                    title="{profile>Restaurant/RestaurantName}"
+                    number="{= ${formatter: 'formatter.totalSum', path: 'profile>Dishes'}/100}"
+                    numberUnit="EUR"
+                    type="Active"
+                    press=".onRepeatOrder">
+                    <ObjectAttribute text="{profile>Date}" />
+                </ObjectListItem>
+            </List>
+            </f:content>
+        </f:SimpleForm> 
+    </Page>
+
+
+</mvc:View>
